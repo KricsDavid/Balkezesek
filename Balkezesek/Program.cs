@@ -12,8 +12,23 @@ namespace Balkezesek
         {
             List<Jatekos> jatekosok = Beolvas("balkezesek.csv");
 
-           
-            
+            // 3. feladat
+            Console.WriteLine("3. feladat: Az adatok száma: " + jatekosok.Count);
+
+            // 4. feladat
+            Console.WriteLine("4. feladat: Utolsó pályára lépés 1999 októberében:");
+            var utolso1999 = jatekosok.Where(j => j.Utolsó.Month == 10 && j.Utolsó.Year == 1999);
+            foreach (var jatekos in utolso1999)
+            {
+                double magassagCM = jatekos.Magasság * 2.54;
+                Console.WriteLine(jatekos.Név + ", Magasság: " + magassagCM.ToString("F1") + " cm");
+            }
+
+            // 5. feladat
+            int evszam = KerekítettBeolvas("5. feladat: Kérek egy 1990 és 1999 közötti évszámot: ", 1990, 1999);
+            Console.WriteLine("6. feladat: Átlagsúly az adott évben (" + evszam + "): " + AtlagSuly(jatekosok, evszam).ToString("F2"));
+
+            Console.ReadLine();
         }
 
         static List<Jatekos> Beolvas(string fajlnev)
